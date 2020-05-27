@@ -113,11 +113,11 @@ brew upgrade tektoncd/tools/tektoncd-cli
 
 - Clone the Repository
 ```bash
-git clone https://github.com/csantanapr/faststart2020-pipelines-lab.git
+git clone https://github.com/csantanapr/tutorial-tekton-pipeline
 ```
 - Change directory
 ```bash
-cd faststart2020-pipelines-lab/
+cd tutorial-tekton-pipeline/
 ```
 
 ## Run Application in a Container
@@ -432,7 +432,7 @@ spec:
   type: git
   params:
     - name: url
-      value: https://github.com/csantanapr/faststart2020-pipelines-lab
+      value: https://github.com/csantanapr/tutorial-tekton-pipeline
     - name: revision
       value: master
 ```
