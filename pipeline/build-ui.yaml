@@ -17,6 +17,9 @@ spec:
       - name: TLSVERIFY
         description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS registry)
         default: "false"
+      - name: STORAGE_DRIVER
+        description: Storage driver. 
+        default: vfs
       - name: manifest_dir
         type: string
         description: Path to context yamls
@@ -46,9 +49,9 @@ spec:
           NEW_IMAGE_ID="$(echo $NEW_IMAGE_ID | sed s/\$NAMESPACE/$NAMESPACE/)"
           echo "SHORT_GIT_HASH = $SHORT_GIT_HASH"
           echo "Building Image $NEW_IMAGE_ID"
-          buildah bud --tls-verify="$(inputs.params.TLSVERIFY)" --layers -f "$(inputs.params.DOCKERFILE)" -t "$NEW_IMAGE_ID" "$(inputs.params.CONTEXT)"
+          buildah bud --storage-driver="$(inputs.params.STORAGE_DRIVER)" --tls-verify="$(inputs.params.TLSVERIFY)" --layers -f "$(inputs.params.DOCKERFILE)" -t "$NEW_IMAGE_ID" "$(inputs.params.CONTEXT)"
           echo "Pushing Image $NEW_IMAGE_ID"
-          buildah push --tls-verify="$(inputs.params.TLSVERIFY)" "$NEW_IMAGE_ID" "docker://$NEW_IMAGE_ID"
+          buildah push --storage-driver="$(inputs.params.STORAGE_DRIVER)" --tls-verify="$(inputs.params.TLSVERIFY)" "$NEW_IMAGE_ID" "docker://$NEW_IMAGE_ID"
           echo "NEW_IMAGE_ID=$NEW_IMAGE_ID" >> /workspace/env-config
       securityContext:
         privileged: true
