@@ -16,7 +16,7 @@ spec:
         app: ui
     spec:
       containers:
-        - image: fake-registry/fake-repo/invalid-image
+        - image: image-registry.openshift-image-registry.svc:5000/jeff-tekton/ui
           imagePullPolicy: Always
           name: ui
           ports:

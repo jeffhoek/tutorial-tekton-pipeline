@@ -7,9 +7,9 @@ spec:
   type: git
   params:
     - name: url
-      value: https://github.com/csantanapr/tutorial-tekton-pipeline
+      value: https://github.com/jeffhoek/tutorial-tekton-pipeline.git 
     - name: revision
-      value: master
+      value: jeff
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
@@ -19,4 +19,4 @@ spec:
   type: image
   params:
     - name: url
-      value: image-registry.openshift-image-registry.svc:5000/$NAMESPACE/ui
+      value: image-registry.openshift-image-registry.svc:5000/jeff-tekton/ui
